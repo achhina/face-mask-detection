@@ -37,7 +37,7 @@ images, labels = next(train_generator)
 
 # Utility function that prints all images from a batch of the training images augmenter
 def plot_images(images_array):
-    fig, axes = plt.subplots(1, batch_size, figsize=(20, 20))
+    fig, axes = plt.subplots(1, BATCH_SIZE, figsize=(20, 20))
     axes = axes.flatten()
     for img, ax in zip(images_array, axes):
         ax.imshow(img)
