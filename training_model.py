@@ -1,12 +1,19 @@
+# Using Keras to process our training data and train our model
 from keras.preprocessing import image
 from keras.models import Sequential
 from keras.optimizers import Adam
 from keras.layers import Dense, Flatten, Conv2D, MaxPool2D
+
+# To save and load model history
 from joblib import dump, load
+
+# To plot our data and get appropriate GRID_SIZE for subplots
 import matplotlib.pyplot as plt
+from math import ceil, sqrt
+
+# To grab environment variables and perform checks
 import os
 from os.path import exists
-from math import ceil, sqrt
 
 # Stops TF optimization warnings from displaying
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
