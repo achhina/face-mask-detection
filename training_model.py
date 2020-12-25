@@ -20,7 +20,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 # Sets models learning rate, number of passes of our training data (epochs) and batch size
 LEARNING_RATE = 1e-4
-EPOCHS = 30
+EPOCHS = 25
 BATCH_SIZE = 32
 
 # Dynamically sets n * n grid size to plot our sample augmented images generated
@@ -83,7 +83,7 @@ model = Sequential([Conv2D(filters=32,
                            padding='same'),
                    MaxPool2D(pool_size=2,
                              strides=2),
-                   Conv2D(filters=64,
+                   Conv2D(filters=32,
                           kernel_size=3,
                           activation='relu',
                           padding='same'),
