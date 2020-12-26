@@ -11,6 +11,7 @@ model. A demonstration of the real time Face Mask Detection can be seen below:
 1. Clone the repository:
 - `$ git https://github.com/AmanC92/face-mask-detection.git`
 2. Navigate to the cloned repository in your system.
+- `cd face-mask-detection`  
 3.  Download Anaconda/Miniconda if it is not downloaded already:
 - Download instructions & files can be found [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html).
 4. Create a virtual environment using conda, replace `venv_name` with the name you would like to give.
