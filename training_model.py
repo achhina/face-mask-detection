@@ -18,7 +18,8 @@ from os.path import exists
 # Stops TF optimization warnings from displaying
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-# Sets models learning rate, number of passes of our training data (epochs) and batch size
+# Sets models target size, learning rate, number of passes of our training data (epochs) and batch size
+TARGET_SIZE = (150, 150)
 LEARNING_RATE = 1e-4
 EPOCHS = 25
 BATCH_SIZE = 32
@@ -43,7 +44,7 @@ train_datagen = image.ImageDataGenerator(rotation_range=60,
 # Generates batches of augmented training data from the directory of our dataset
 train_generator = train_datagen.flow_from_directory(DATASET_PATH,
                                                     batch_size=BATCH_SIZE,
-                                                    target_size=(150, 150),
+                                                    target_size=TARGET_SIZE,
                                                     class_mode='binary',
                                                     color_mode='rgb',
                                                     subset='training')
@@ -51,7 +52,7 @@ train_generator = train_datagen.flow_from_directory(DATASET_PATH,
 # Generates batches of augmented validation data from the directory of our dataset
 valid_generator = train_datagen.flow_from_directory(DATASET_PATH,
                                                     batch_size=BATCH_SIZE,
-                                                    target_size=(150, 150),
+                                                    target_size=TARGET_SIZE,
                                                     class_mode='binary',
                                                     color_mode='rgb',
                                                     subset='validation')

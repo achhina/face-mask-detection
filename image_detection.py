@@ -20,9 +20,13 @@ DATASET_PATH = './data'
 MODEL_PATH = 'face_mask_model'
 HISTORY_PATH = MODEL_PATH + '/history.joblib'
 
+# Target size our model was trained on
+TARGET_SIZE = (150, 150)
 
-IMAGE_DIRECTORY_PATH = '/Users/aman/Pictures/unique_test_face_mask_detector/'
-IMAGE_PATH = IMAGE_DIRECTORY_PATH + '/image6.jpg'
+# Image and Directory path to be used by our functions
+IMAGE_DIRECTORY_PATH = '/full/path/here/'
+# Replace IMAGE_DIRECTORY_PATH if image is not inside of image directory
+IMAGE_PATH = IMAGE_DIRECTORY_PATH + 'imageNameHere.jpg'
 
 # Loading in our previously trained model using joblib
 model = load_model(MODEL_PATH)
@@ -31,10 +35,11 @@ model = load_model(MODEL_PATH)
 # Returns a True/False in respect to whether the model predicts the person is wearing a mask
 def predict_image(image_path):
     # Load in image and set target size to what model was trained on
-    image_data = image.load_img(image_path, target_size=(150, 150))
+    image_data = image.load_img(image_path, target_size=TARGET_SIZE)
 
-    # Convert to a numpy array and adds additional level of nesting to array
+    # Convert to a numpy array, rescales to what we trained our model on and adds additional level of nesting
     image_array = np.array(image_data)
+    image_array = image_array / 255.0
     image_batch = np.expand_dims(image_array, axis=0)
 
     # Gets prediction of passed image
@@ -51,11 +56,11 @@ def predict_directory(directory_path):
 
     for image_name in image_list:
         # Load in image from directory list joined with directory path and set target size to what model was trained on
-        image_data = image.load_img(directory_path + image_name, target_size=(150, 150))
+        image_data = image.load_img(directory_path + image_name, target_size=TARGET_SIZE)
 
-        # Convert to a numpy array and adds additional level of nesting to array
+        # Convert to a numpy array, rescales to what we trained our model on and adds additional level of nesting
         image_array = image.img_to_array(image_data)
-        image_array = image_array / 255
+        image_array = image_array / 255.0
         image_batch = np.expand_dims(image_array, axis=0)
 
         # Gets prediction of passed image
