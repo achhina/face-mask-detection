@@ -38,10 +38,10 @@ def predict_image(image_path):
     image_batch = np.expand_dims(image_array, axis=0)
 
     # Gets prediction of passed image
-    prediction = model.predict(image_batch)
+    prediction = (model.predict(image_batch) > 0.5).astype("int32")
 
     # True if wearing a mask - False if not
-    return prediction[0][0] == 0.0
+    return prediction[0] == 0.0
 
 
 # Returns 2D array in respect to each image in the directory predicted to be wearing a mask as True/False & image name
@@ -54,11 +54,12 @@ def predict_directory(directory_path):
         image_data = image.load_img(directory_path + image_name, target_size=(150, 150))
 
         # Convert to a numpy array and adds additional level of nesting to array
-        image_array = np.array(image_data)
+        image_array = image.img_to_array(image_data)
+        image_array = image_array / 255
         image_batch = np.expand_dims(image_array, axis=0)
 
         # Gets prediction of passed image
-        prediction = model.predict(image_batch)
+        prediction = (model.predict(image_batch) > 0.5).astype("int32")
 
         # Appends array of size 2 with True if wearing a mask - False if not & image name i.e. [True, image1.jpg]
         predictions.append([prediction[0][0] == 0.0, image_name])
