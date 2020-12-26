@@ -139,7 +139,7 @@ def plot_images(images_array, labels_array):
 def plot_history(file_path):
     # Load history of our model from designated file path
     model_history = load(file_path)
-
+    print(model_history)
     # Plots the Validation & Training Loss
     plt.plot(range(1, EPOCHS + 1), model_history['loss'], 'g', label='Training loss')
     plt.plot(range(1, EPOCHS + 1), model_history['val_loss'], 'b', label='Validation loss')
