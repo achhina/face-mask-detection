@@ -131,3 +131,6 @@ dmypy.json
 # Custom Attributes
 ./data/.DS_Store
 .idea
+
+# Mac artificats
+.DS_Store
